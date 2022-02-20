@@ -19,7 +19,7 @@ void loop()
 {
   if (MFS.getTimer() == 0)
   {
-    MFS.setTimer(10000); // reset millisecond countdown timer.
+    MFS.setTimer(10000); 
     if (lastPulseTime != -1)
     {
       lastPulseTime = 10000 + lastPulseTime;
@@ -30,7 +30,6 @@ void loop()
 
   if (sensorValue < 20 || sensorValue > 970)
   {
-    // Sensor hasn't normalized, check how long for in milliseconds.
     if (lastPulseTime != -1 && lastPulseTime - MFS.getTimer() > 700)
     {
       initializeSensorReading();
@@ -59,16 +58,12 @@ void loop()
         }
         else
         {
-          // bpm is within range, but still need to calculate average.
-
           data[dataIdx++] = bpm;
 
           if (dataIdx >= 4)
           {
             dataIdx = 0;
           }
-
-
 
           if (data[0] && data[1] && data[2] && data[3])
           {
@@ -92,10 +87,8 @@ void loop()
     pulseDetected = false;
   }
 
-  //Serial.println(sensorValue);
-  //delay(10);
 }
-// Initialize the read buffer and display.
+
 void initializeSensorReading()
 {
   lastPulseTime = 0;
